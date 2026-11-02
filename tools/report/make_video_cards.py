@@ -5,6 +5,7 @@ title -> block-by-block introduction -> "视频展示" -> live demo with caption
     F:/yolo_env/Scripts/python.exe tools/report/make_video_cards.py   ->  F:/fpga_submit/video/cards/*.png
 """
 import os
+import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -102,17 +103,67 @@ CAPS = [
 ]
 NOTE = '注：夜间弱光拍摄、显示器色温偏冷，手机拍屏偏蓝，屏幕区域已做后期白平衡校正；板上回传实测白纸 R/G/B = 112/113/113'
 
+# task checklist: (group, [(item, caption segments in which it is being shown)]); green frame = shown now, white frame = shown earlier
+TASKS = [
+    # group and item names follow the official guide (1.2 基础要求, 1.3 扩展要求, 1.4 进阶要求 = 评分标准里的高阶挑战项)
+    ('基础要求', [('1 视频采集与 HDMI 显示', {1}), ('2 FPGA 图像处理算法', {3, 4}), ('3 稳定输出（固化 Flash）', {0}), ('4 OSD 叠加 + 安路 Logo', {1})]),
+    ('扩展要求', [('1 风格化 / 视觉增强', {4, 10}), ('2 目标检测与识别', {3, 7}), ('3 应用场景 + 外部控制', {5, 6, 7}), ('4 性能优化', {2}),
+              ('5 自主创意', {7, 8})]),
+    ('进阶要求（高阶挑战）', [('1 多算法切换 + 状态显示', {4, 11}), ('2 目标跟踪 + 坐标标注', {3}), ('3 处理延迟可视化', {1}), ('4 硬件运动目标检测', {9}),
+                    ('5 图像质量自动调节', {8, 10})]),
+    ('外设', [('数码管 / 蜂鸣器', {2, 5}), ('ESP32 桥接', {5, 6, 7}), ('OLED 状态屏', {6}), ('三色灯', {6}), ('WALL-E 机器人', {5, 6, 7})]),
+]
+GREEN = (40, 230, 90, 255)
+
+
+def panel(d, x0, y0, w, seg, fs, row, alpha):
+    """draws the checklist at (x0, y0), width w; returns its height"""
+    n_rows = sum(len(items) for _, items in TASKS)
+    hh = row + 6                                                        # group header row
+    h = len(TASKS) * hh + n_rows * row + 16
+    d.rounded_rectangle([x0, y0, x0 + w, y0 + h], radius=10, fill=(0, 0, 0, alpha))
+    y = y0 + 8
+    for group, items in TASKS:
+        d.text((x0 + 12, y + hh // 2), group, font=font(fs + 1), fill=(255, 214, 110, 255), anchor='lm')
+        y += hh
+        for label, segs in items:
+            now, before = seg in segs, any(s < seg for s in segs)
+            col = (255, 255, 255, 255) if now or before else (170, 170, 170, 255)
+            d.text((x0 + 24, y + row // 2), label, font=font(fs, now), fill=col, anchor='lm')
+            if now or before:
+                d.rounded_rectangle([x0 + 14, y + 1, x0 + w - 10, y + row - 2], radius=5, outline=GREEN if now else (255, 255, 255, 230),
+                                    width=3 if now else 2)
+            y += row
+    return h
+
+
+LAYOUT = sys.argv[1] if len(sys.argv) > 1 else 'side'                   # side: video 80 %, checklist in a right column (final); overlay: on the video, top right
+VW, VH = 1536, 864                                                      # video area in the side layout
 for i, (a, b, s1, s2) in enumerate(CAPS):
     im = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    h = 120 if s2 else 78
-    d.rectangle([0, H - h - 20, W, H - 20], fill=(0, 0, 0, 150))
-    d.text(((W - d.textlength(s1, font=font(40))) / 2, H - h - 8), s1, font=font(40), fill=(255, 255, 255, 255))
-    if s2:
-        d.text(((W - d.textlength(s2, font=font(28, False))) / 2, H - h + 48), s2, font=font(28, False), fill=(230, 230, 230, 255))
-    if i in (1, 2, 3):
-        d.rectangle([0, 0, W, 46], fill=(0, 0, 0, 120))
-        d.text(((W - d.textlength(NOTE, font=font(24, False))) / 2, 8), NOTE, font=font(24, False), fill=(255, 255, 255, 255))
+    if LAYOUT == 'side':
+        d.rectangle([VW, 0, W, H], fill=(28, 30, 34, 255))
+        d.rectangle([0, VH, VW, H], fill=(28, 30, 34, 255))
+        d.text((VW + 22, 18), '赛题任务完成情况', font=font(28), fill=(255, 255, 255, 255))
+        panel(d, VW + 10, 64, W - VW - 20, i, 23, 37, 0)
+        d.text(((VW - d.textlength(s1, font=font(36))) / 2, VH + 22), s1, font=font(36), fill=(255, 255, 255, 255))
+        if s2:
+            d.text(((VW - d.textlength(s2, font=font(27, False))) / 2, VH + 78), s2, font=font(27, False), fill=(225, 225, 225, 255))
+        if i in (1, 2, 3):
+            d.text(((VW - d.textlength(NOTE, font=font(20, False))) / 2, VH + 130), NOTE, font=font(20, False), fill=(190, 190, 190, 255))
+    else:
+        h = 120 if s2 else 78
+        d.rectangle([0, H - h - 20, W, H - 20], fill=(0, 0, 0, 150))
+        d.text(((W - d.textlength(s1, font=font(40))) / 2, H - h - 8), s1, font=font(40), fill=(255, 255, 255, 255))
+        if s2:
+            d.text(((W - d.textlength(s2, font=font(28, False))) / 2, H - h + 48), s2, font=font(28, False), fill=(230, 230, 230, 255))
+        if i in (1, 2, 3):
+            d.rectangle([0, 0, W, 46], fill=(0, 0, 0, 120))
+            d.text(((W - d.textlength(NOTE, font=font(24, False))) / 2, 8), NOTE, font=font(24, False), fill=(255, 255, 255, 255))
+        pw = 272
+        panel(d, W - pw - 12, 56, pw, i, 18, 26, 140)
     im.save(f'{OUT}/cap_{i:02d}.png')
+open(f'{OUT}/layout.txt', 'w').write(LAYOUT + '\n')
 open(f'{OUT}/captions.txt', 'w', encoding='utf-8').write('\n'.join('%g %g' % (a, b) for a, b, _, _ in CAPS) + '\n')
 print('cards and %d captions -> %s' % (len(CAPS), OUT))

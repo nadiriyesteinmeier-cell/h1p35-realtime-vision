@@ -15,6 +15,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else 'F:/fpga_submit/video/作品演示�
 INTRO = [('c0_title', 4.0), ('c1_block', 5.5), ('c2_photo', 5.5), ('c3_robot', 5.5), ('c4_demo', 2.0)]
 END = ('c5_end', 3.0)
 caps = [tuple(map(float, l.split())) for l in open(f'{CARDS}/captions.txt') if l.strip()]
+LAYOUT = open(f'{CARDS}/layout.txt').read().strip()                  # written by make_video_cards.py: overlay | side
 
 args = [FF, '-hide_banner', '-loglevel', 'error', '-y']
 for name, t in INTRO + [END]:
@@ -28,6 +29,9 @@ fc = []
 for k, (name, t) in enumerate(INTRO + [END]):
     fc.append(f'[{k}:v]scale=1920:1080,format=yuv420p,fps=30,fade=t=in:st=0:d=0.4,fade=t=out:st={t - 0.4:.2f}:d=0.4[v{k}]')
 last = f'[{demo_in}:v]'
+if LAYOUT == 'side':                                                    # video at 80 % top left; the caption PNGs fill the right column and the bottom strip
+    fc.append(f'{last}scale=1536:864:flags=lanczos,pad=1920:1080:0:0:color=0x1C1E22[base]')
+    last = '[base]'
 for i, (a, b) in enumerate(caps):
     nxt = f'[d{i}]'
     fc.append(f"{last}[{demo_in + 1 + i}:v]overlay=0:0:shortest=1:enable='between(t,{a},{min(b, 9999)})'{nxt}")

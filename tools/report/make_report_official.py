@@ -486,9 +486,9 @@ remove(find('阐述最终实现的成果'))
 h = find('整体介绍（整个系统实物')
 set_text(h, '整体介绍')
 at = At(h._p)
-at.p('最终系统由 HX1P35A 开发板（含 SC500CS 摄像头）、HDMI 显示器、ESP32 与 WALL-E 机器人组成。开发板从 Flash 启动，'
+at.p('最终系统由 HX1P35A 开发板、SC500CS 摄像头、HDMI 显示器、ESP32 桥接板（带 OLED 状态屏和三色灯）与 WALL-E 机器人组成。开发板从 Flash 启动，'
      '按键切换 7 个页面；ESP32 与机器人通过手机或电脑热点组成局域网，演示时不需要电脑运行任何程序。', count=False)
-at.fig('system_photo.png', '系统实物全景（显示器为 YOLO 页；电脑仅给 ESP32 供电并记录日志）', 12.0)
+at.fig('system_overview.jpg', '系统实物全景（演示视频截图，各部件见图中编号；显示器为 CV 页，正在跟踪右上角的绿色铁框）', 15.8)
 at.fig('targets.jpg', '识别目标：蓝色泡沫块、红色收纳盒、绿色镂空铁框', 10.0)
 
 h = find('工程成果（分硬件实物')
