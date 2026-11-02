@@ -1,0 +1,37 @@
+{
+ "anchors": [
+  [
+   [
+    13.0,
+    11.0
+   ],
+   [
+    19.0,
+    19.0
+   ],
+   [
+    34.0,
+    30.0
+   ]
+  ],
+  [
+   [
+    4.0,
+    6.0
+   ],
+   [
+    8.0,
+    5.0
+   ],
+   [
+    8.0,
+    10.0
+   ]
+  ]
+ ],
+ "strides": [
+  32,
+  16
+ ],
+ "note": "anchors in network pixels (128 x 96 input); head1 = stride 32 (large), head2 = stride 16 (small)"
+}

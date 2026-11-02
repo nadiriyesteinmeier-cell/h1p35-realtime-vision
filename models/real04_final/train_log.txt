@@ -1,0 +1,252 @@
+device cuda, 675 train / 91 val images, anchors [[[13.0, 11.0], [19.0, 19.0], [34.0, 30.0]], [[4.0, 6.0], [8.0, 5.0], [8.0, 10.0]]], params 31496
+epoch   0  20 s  loss box 3.070 obj 7.533 cls 1.022 range 0.1211
+epoch   1  2 s  loss box 2.847 obj 6.825 cls 1.022 range 0.1208
+epoch   2  1 s  loss box 2.756 obj 5.991 cls 0.745 range 0.1297
+epoch   3  2 s  loss box 2.609 obj 4.764 cls 0.684 range 0.1318
+epoch   4  2 s  loss box 2.421 obj 3.855 cls 0.615 range 0.1343  val AP50 red 0.439 green 0.463 blue 0.457 mAP 0.453
+epoch   5  2 s  loss box 2.276 obj 2.815 cls 0.425 range 0.1176
+epoch   6  2 s  loss box 2.184 obj 2.214 cls 0.366 range 0.0905
+epoch   7  2 s  loss box 2.255 obj 1.933 cls 0.315 range 0.0655
+epoch   8  2 s  loss box 2.174 obj 1.574 cls 0.331 range 0.0513
+epoch   9  2 s  loss box 2.100 obj 1.335 cls 0.303 range 0.0427  val AP50 red 0.677 green 0.541 blue 0.667 mAP 0.628
+epoch  10  2 s  loss box 2.028 obj 1.216 cls 0.261 range 0.0344
+epoch  11  1 s  loss box 2.099 obj 1.225 cls 0.267 range 0.0325
+epoch  12  1 s  loss box 2.055 obj 1.082 cls 0.198 range 0.0296
+epoch  13  2 s  loss box 2.095 obj 1.026 cls 0.210 range 0.0266
+epoch  14  2 s  loss box 2.036 obj 1.090 cls 0.250 range 0.0254  val AP50 red 0.745 green 0.482 blue 0.773 mAP 0.666
+epoch  15  2 s  loss box 2.083 obj 0.992 cls 0.194 range 0.0250
+epoch  16  1 s  loss box 2.091 obj 0.977 cls 0.214 range 0.0226
+epoch  17  2 s  loss box 2.053 obj 0.913 cls 0.185 range 0.0213
+epoch  18  1 s  loss box 2.035 obj 0.863 cls 0.170 range 0.0219
+epoch  19  1 s  loss box 2.017 obj 0.912 cls 0.163 range 0.0213  val AP50 red 0.814 green 0.515 blue 0.750 mAP 0.693
+epoch  20  1 s  loss box 2.040 obj 0.834 cls 0.128 range 0.0194
+epoch  21  2 s  loss box 1.985 obj 0.819 cls 0.217 range 0.0200
+epoch  22  2 s  loss box 2.064 obj 0.778 cls 0.164 range 0.0204
+epoch  23  2 s  loss box 2.062 obj 0.776 cls 0.188 range 0.0219
+epoch  24  2 s  loss box 1.984 obj 0.793 cls 0.150 range 0.0190  val AP50 red 0.777 green 0.559 blue 0.674 mAP 0.670
+epoch  25  2 s  loss box 2.003 obj 0.741 cls 0.181 range 0.0185
+epoch  26  2 s  loss box 1.977 obj 0.710 cls 0.148 range 0.0207
+epoch  27  2 s  loss box 1.981 obj 0.790 cls 0.322 range 0.0186
+epoch  28  2 s  loss box 1.990 obj 0.780 cls 0.177 range 0.0159
+epoch  29  2 s  loss box 1.950 obj 0.760 cls 0.140 range 0.0175  val AP50 red 0.937 green 0.494 blue 0.839 mAP 0.757
+epoch  30  2 s  loss box 1.937 obj 0.696 cls 0.174 range 0.0181
+epoch  31  2 s  loss box 1.992 obj 0.721 cls 0.152 range 0.0177
+epoch  32  2 s  loss box 2.039 obj 0.713 cls 0.112 range 0.0183
+epoch  33  2 s  loss box 1.930 obj 0.792 cls 0.124 range 0.0181
+epoch  34  2 s  loss box 1.950 obj 0.780 cls 0.122 range 0.0172  val AP50 red 0.806 green 0.457 blue 0.681 mAP 0.648
+epoch  35  2 s  loss box 1.933 obj 0.681 cls 0.175 range 0.0171
+epoch  36  2 s  loss box 1.900 obj 0.751 cls 0.218 range 0.0181
+epoch  37  2 s  loss box 1.936 obj 0.605 cls 0.176 range 0.0166
+epoch  38  2 s  loss box 1.871 obj 0.670 cls 0.092 range 0.0183
+epoch  39  2 s  loss box 1.938 obj 0.734 cls 0.326 range 0.0165  val AP50 red 0.793 green 0.501 blue 0.917 mAP 0.737
+epoch  40  2 s  loss box 2.037 obj 0.625 cls 0.134 range 0.0166
+epoch  41  2 s  loss box 1.960 obj 0.583 cls 0.095 range 0.0162
+epoch  42  1 s  loss box 1.961 obj 0.632 cls 0.175 range 0.0154
+epoch  43  2 s  loss box 1.927 obj 0.571 cls 0.143 range 0.0164
+epoch  44  2 s  loss box 1.971 obj 0.616 cls 0.147 range 0.0143  val AP50 red 0.923 green 0.560 blue 0.917 mAP 0.800
+epoch  45  2 s  loss box 1.918 obj 0.612 cls 0.092 range 0.0174
+epoch  46  2 s  loss box 1.949 obj 0.579 cls 0.091 range 0.0175
+epoch  47  2 s  loss box 1.925 obj 0.584 cls 0.102 range 0.0147
+epoch  48  2 s  loss box 1.957 obj 0.606 cls 0.100 range 0.0146
+epoch  49  2 s  loss box 1.963 obj 0.651 cls 0.159 range 0.0158  val AP50 red 0.823 green 0.591 blue 0.917 mAP 0.777
+epoch  50  2 s  loss box 1.924 obj 0.532 cls 0.104 range 0.0169
+epoch  51  2 s  loss box 2.005 obj 0.695 cls 0.150 range 0.0155
+epoch  52  2 s  loss box 1.901 obj 0.572 cls 0.098 range 0.0154
+epoch  53  2 s  loss box 1.971 obj 0.561 cls 0.091 range 0.0163
+epoch  54  2 s  loss box 1.938 obj 0.668 cls 0.211 range 0.0164  val AP50 red 0.862 green 0.611 blue 0.904 mAP 0.792
+epoch  55  2 s  loss box 1.906 obj 0.573 cls 0.060 range 0.0158
+epoch  56  2 s  loss box 1.954 obj 0.550 cls 0.082 range 0.0159
+epoch  57  2 s  loss box 1.945 obj 0.564 cls 0.089 range 0.0165
+epoch  58  2 s  loss box 1.985 obj 0.561 cls 0.081 range 0.0163
+epoch  59  2 s  loss box 1.876 obj 0.645 cls 0.067 range 0.0172  val AP50 red 0.953 green 0.552 blue 0.917 mAP 0.807
+epoch  60  2 s  loss box 1.996 obj 0.669 cls 0.083 range 0.0154
+epoch  61  2 s  loss box 1.942 obj 0.499 cls 0.083 range 0.0163
+epoch  62  2 s  loss box 1.977 obj 0.710 cls 0.105 range 0.0147
+epoch  63  2 s  loss box 1.902 obj 0.494 cls 0.084 range 0.0136
+epoch  64  2 s  loss box 2.018 obj 0.683 cls 0.152 range 0.0140  val AP50 red 0.914 green 0.473 blue 0.917 mAP 0.768
+epoch  65  2 s  loss box 1.918 obj 0.515 cls 0.090 range 0.0142
+epoch  66  2 s  loss box 1.965 obj 0.509 cls 0.097 range 0.0125
+epoch  67  2 s  loss box 1.911 obj 0.581 cls 0.085 range 0.0147
+epoch  68  2 s  loss box 1.937 obj 0.530 cls 0.122 range 0.0144
+epoch  69  1 s  loss box 1.962 obj 0.492 cls 0.077 range 0.0148  val AP50 red 0.880 green 0.553 blue 0.917 mAP 0.783
+epoch  70  1 s  loss box 1.998 obj 0.487 cls 0.145 range 0.0133
+epoch  71  1 s  loss box 1.865 obj 0.500 cls 0.058 range 0.0139
+epoch  72  1 s  loss box 1.886 obj 0.516 cls 0.086 range 0.0135
+epoch  73  1 s  loss box 1.905 obj 0.543 cls 0.083 range 0.0144
+epoch  74  2 s  loss box 1.924 obj 0.461 cls 0.064 range 0.0164  val AP50 red 0.935 green 0.540 blue 0.917 mAP 0.797
+epoch  75  5 s  loss box 1.890 obj 0.501 cls 0.110 range 0.0129
+epoch  76  1 s  loss box 1.902 obj 0.488 cls 0.187 range 0.0131
+epoch  77  1 s  loss box 1.863 obj 0.631 cls 0.251 range 0.0151
+epoch  78  1 s  loss box 1.912 obj 0.486 cls 0.064 range 0.0124
+epoch  79  2 s  loss box 1.871 obj 0.462 cls 0.090 range 0.0156  val AP50 red 0.945 green 0.605 blue 0.917 mAP 0.822
+epoch  80  2 s  loss box 1.846 obj 0.484 cls 0.111 range 0.0145
+epoch  81  3 s  loss box 2.018 obj 0.473 cls 0.087 range 0.0134
+epoch  82  2 s  loss box 1.917 obj 0.463 cls 0.065 range 0.0123
+epoch  83  2 s  loss box 1.966 obj 0.525 cls 0.147 range 0.0128
+epoch  84  2 s  loss box 1.981 obj 0.444 cls 0.235 range 0.0147  val AP50 red 0.938 green 0.530 blue 0.917 mAP 0.795
+epoch  85  3 s  loss box 1.873 obj 0.425 cls 0.072 range 0.0131
+epoch  86  2 s  loss box 1.932 obj 0.450 cls 0.067 range 0.0141
+epoch  87  2 s  loss box 1.885 obj 0.448 cls 0.121 range 0.0119
+epoch  88  2 s  loss box 1.893 obj 0.523 cls 0.117 range 0.0123
+epoch  89  2 s  loss box 1.890 obj 0.435 cls 0.067 range 0.0141  val AP50 red 0.923 green 0.515 blue 0.917 mAP 0.785
+epoch  90  2 s  loss box 1.946 obj 0.454 cls 0.078 range 0.0118
+epoch  91  2 s  loss box 1.879 obj 0.435 cls 0.061 range 0.0126
+epoch  92  2 s  loss box 1.952 obj 0.448 cls 0.057 range 0.0126
+epoch  93  1 s  loss box 1.920 obj 0.605 cls 0.084 range 0.0145
+epoch  94  2 s  loss box 1.895 obj 0.459 cls 0.060 range 0.0145  val AP50 red 0.914 green 0.557 blue 0.917 mAP 0.796
+epoch  95  2 s  loss box 1.959 obj 0.456 cls 0.069 range 0.0122
+epoch  96  1 s  loss box 1.868 obj 0.397 cls 0.082 range 0.0174
+epoch  97  2 s  loss box 1.911 obj 0.423 cls 0.067 range 0.0118
+epoch  98  2 s  loss box 1.924 obj 0.422 cls 0.063 range 0.0129
+epoch  99  2 s  loss box 1.962 obj 0.434 cls 0.080 range 0.0114  val AP50 red 0.911 green 0.588 blue 0.917 mAP 0.805
+epoch 100  2 s  loss box 1.924 obj 0.395 cls 0.067 range 0.0121
+epoch 101  2 s  loss box 1.948 obj 0.513 cls 0.095 range 0.0142
+epoch 102  2 s  loss box 1.868 obj 0.433 cls 0.083 range 0.0145
+epoch 103  2 s  loss box 1.886 obj 0.415 cls 0.050 range 0.0139
+epoch 104  2 s  loss box 1.841 obj 0.438 cls 0.077 range 0.0127  val AP50 red 0.981 green 0.595 blue 0.917 mAP 0.831
+epoch 105  2 s  loss box 1.982 obj 0.371 cls 0.073 range 0.0112
+epoch 106  1 s  loss box 1.867 obj 0.394 cls 0.062 range 0.0142
+epoch 107  1 s  loss box 1.904 obj 0.414 cls 0.085 range 0.0122
+epoch 108  2 s  loss box 1.953 obj 0.488 cls 0.150 range 0.0131
+epoch 109  2 s  loss box 1.987 obj 0.412 cls 0.114 range 0.0112  val AP50 red 0.941 green 0.573 blue 0.917 mAP 0.810
+epoch 110  2 s  loss box 1.903 obj 0.392 cls 0.066 range 0.0114
+epoch 111  1 s  loss box 1.872 obj 0.413 cls 0.045 range 0.0116
+epoch 112  2 s  loss box 1.908 obj 0.390 cls 0.071 range 0.0114
+epoch 113  2 s  loss box 1.825 obj 0.625 cls 0.049 range 0.0158
+epoch 114  1 s  loss box 1.868 obj 0.482 cls 0.046 range 0.0125  val AP50 red 0.984 green 0.492 blue 0.917 mAP 0.798
+epoch 115  2 s  loss box 1.932 obj 0.397 cls 0.061 range 0.0129
+epoch 116  2 s  loss box 1.838 obj 0.447 cls 0.042 range 0.0135
+epoch 117  2 s  loss box 1.950 obj 0.472 cls 0.051 range 0.0123
+epoch 118  2 s  loss box 1.861 obj 0.420 cls 0.054 range 0.0137
+epoch 119  2 s  loss box 1.835 obj 0.493 cls 0.068 range 0.0138  val AP50 red 0.969 green 0.558 blue 0.917 mAP 0.814
+epoch 120  2 s  loss box 1.888 obj 0.420 cls 0.085 range 0.0129
+epoch 121  2 s  loss box 1.930 obj 0.369 cls 0.067 range 0.0094
+epoch 122  2 s  loss box 1.924 obj 0.414 cls 0.089 range 0.0134
+epoch 123  2 s  loss box 1.914 obj 0.419 cls 0.068 range 0.0123
+epoch 124  2 s  loss box 1.880 obj 0.389 cls 0.046 range 0.0115  val AP50 red 0.966 green 0.557 blue 0.917 mAP 0.813
+epoch 125  2 s  loss box 1.858 obj 0.413 cls 0.053 range 0.0097
+epoch 126  2 s  loss box 1.896 obj 0.448 cls 0.068 range 0.0128
+epoch 127  2 s  loss box 1.891 obj 0.453 cls 0.073 range 0.0141
+epoch 128  2 s  loss box 1.849 obj 0.442 cls 0.049 range 0.0116
+epoch 129  2 s  loss box 1.886 obj 0.408 cls 0.069 range 0.0127  val AP50 red 0.954 green 0.602 blue 0.917 mAP 0.824
+epoch 130  1 s  loss box 1.930 obj 0.335 cls 0.098 range 0.0116
+epoch 131  2 s  loss box 1.918 obj 0.422 cls 0.041 range 0.0110
+epoch 132  2 s  loss box 1.881 obj 0.390 cls 0.079 range 0.0121
+epoch 133  2 s  loss box 1.905 obj 0.351 cls 0.097 range 0.0108
+epoch 134  2 s  loss box 1.831 obj 0.400 cls 0.036 range 0.0204  val AP50 red 0.979 green 0.622 blue 0.917 mAP 0.839
+epoch 135  1 s  loss box 1.875 obj 0.379 cls 0.057 range 0.0153
+epoch 136  2 s  loss box 1.899 obj 0.409 cls 0.070 range 0.0141
+epoch 137  2 s  loss box 1.896 obj 0.386 cls 0.042 range 0.0106
+epoch 138  2 s  loss box 1.873 obj 0.400 cls 0.078 range 0.0096
+epoch 139  2 s  loss box 1.900 obj 0.352 cls 0.069 range 0.0117  val AP50 red 0.982 green 0.561 blue 0.917 mAP 0.820
+epoch 140  1 s  loss box 1.891 obj 0.382 cls 0.101 range 0.0118
+epoch 141  2 s  loss box 1.911 obj 0.390 cls 0.098 range 0.0112
+epoch 142  2 s  loss box 1.874 obj 0.368 cls 0.043 range 0.0100
+epoch 143  2 s  loss box 1.893 obj 0.382 cls 0.075 range 0.0107
+epoch 144  2 s  loss box 1.943 obj 0.372 cls 0.039 range 0.0109  val AP50 red 0.980 green 0.572 blue 0.917 mAP 0.823
+epoch 145  2 s  loss box 1.847 obj 0.387 cls 0.040 range 0.0102
+epoch 146  1 s  loss box 1.886 obj 0.391 cls 0.043 range 0.0107
+epoch 147  2 s  loss box 1.831 obj 0.493 cls 0.063 range 0.0092
+epoch 148  1 s  loss box 1.838 obj 0.427 cls 0.061 range 0.0101
+epoch 149  1 s  loss box 1.794 obj 0.480 cls 0.045 range 0.0106  val AP50 red 0.949 green 0.581 blue 0.917 mAP 0.815
+epoch 150  1 s  loss box 1.835 obj 0.363 cls 0.042 range 0.0118
+epoch 151  1 s  loss box 1.852 obj 0.485 cls 0.043 range 0.0105
+epoch 152  1 s  loss box 1.857 obj 0.386 cls 0.095 range 0.0100
+epoch 153  1 s  loss box 1.880 obj 0.312 cls 0.056 range 0.0089
+epoch 154  1 s  loss box 1.876 obj 0.493 cls 0.053 range 0.0103  val AP50 red 0.968 green 0.620 blue 0.917 mAP 0.835
+epoch 155  1 s  loss box 1.878 obj 0.444 cls 0.040 range 0.0115
+epoch 156  2 s  loss box 1.937 obj 0.350 cls 0.091 range 0.0103
+epoch 157  2 s  loss box 1.928 obj 0.373 cls 0.064 range 0.0095
+epoch 158  1 s  loss box 1.913 obj 0.352 cls 0.058 range 0.0104
+epoch 159  1 s  loss box 1.896 obj 0.423 cls 0.049 range 0.0089  val AP50 red 0.998 green 0.592 blue 0.917 mAP 0.836
+epoch 160  1 s  loss box 1.804 obj 0.436 cls 0.052 range 0.0137
+epoch 161  1 s  loss box 1.919 obj 0.467 cls 0.067 range 0.0123
+epoch 162  1 s  loss box 1.889 obj 0.410 cls 0.047 range 0.0108
+epoch 163  2 s  loss box 1.902 obj 0.334 cls 0.056 range 0.0113
+epoch 164  1 s  loss box 1.883 obj 0.352 cls 0.070 range 0.0116  val AP50 red 0.958 green 0.608 blue 0.917 mAP 0.828
+epoch 165  1 s  loss box 1.938 obj 0.370 cls 0.052 range 0.0115
+epoch 166  2 s  loss box 1.919 obj 0.325 cls 0.054 range 0.0107
+epoch 167  2 s  loss box 1.891 obj 0.336 cls 0.061 range 0.0114
+epoch 168  2 s  loss box 1.864 obj 0.418 cls 0.044 range 0.0126
+epoch 169  2 s  loss box 1.942 obj 0.366 cls 0.044 range 0.0116  val AP50 red 0.972 green 0.611 blue 0.917 mAP 0.833
+epoch 170  2 s  loss box 1.864 obj 0.323 cls 0.038 range 0.0132
+epoch 171  2 s  loss box 1.930 obj 0.314 cls 0.049 range 0.0119
+epoch 172  2 s  loss box 1.918 obj 0.351 cls 0.086 range 0.0104
+epoch 173  2 s  loss box 1.875 obj 0.401 cls 0.058 range 0.0108
+epoch 174  2 s  loss box 1.850 obj 0.354 cls 0.072 range 0.0150  val AP50 red 0.999 green 0.548 blue 0.917 mAP 0.821
+epoch 175  2 s  loss box 1.913 obj 0.320 cls 0.040 range 0.0126
+epoch 176  2 s  loss box 1.860 obj 0.351 cls 0.057 range 0.0131
+epoch 177  2 s  loss box 1.836 obj 0.346 cls 0.033 range 0.0123
+epoch 178  2 s  loss box 1.849 obj 0.368 cls 0.050 range 0.0110
+epoch 179  2 s  loss box 1.929 obj 0.396 cls 0.051 range 0.0109  val AP50 red 0.970 green 0.580 blue 0.917 mAP 0.822
+epoch 180  2 s  loss box 1.972 obj 0.359 cls 0.053 range 0.0115
+epoch 181  2 s  loss box 1.868 obj 0.327 cls 0.035 range 0.0107
+epoch 182  1 s  loss box 1.882 obj 0.378 cls 0.046 range 0.0109
+epoch 183  2 s  loss box 1.878 obj 0.418 cls 0.071 range 0.0114
+epoch 184  2 s  loss box 1.836 obj 0.500 cls 0.066 range 0.0118  val AP50 red 0.964 green 0.614 blue 0.917 mAP 0.832
+epoch 185  2 s  loss box 1.875 obj 0.376 cls 0.037 range 0.0093
+epoch 186  2 s  loss box 1.869 obj 0.384 cls 0.055 range 0.0104
+epoch 187  2 s  loss box 1.870 obj 0.367 cls 0.076 range 0.0103
+epoch 188  1 s  loss box 1.918 obj 0.365 cls 0.064 range 0.0093
+epoch 189  1 s  loss box 1.850 obj 0.381 cls 0.043 range 0.0108  val AP50 red 0.962 green 0.614 blue 0.917 mAP 0.831
+epoch 190  1 s  loss box 1.928 obj 0.359 cls 0.050 range 0.0114
+epoch 191  1 s  loss box 1.840 obj 0.452 cls 0.049 range 0.0112
+epoch 192  1 s  loss box 1.834 obj 0.429 cls 0.050 range 0.0100
+epoch 193  2 s  loss box 1.907 obj 0.383 cls 0.057 range 0.0108
+epoch 194  2 s  loss box 1.880 obj 0.306 cls 0.043 range 0.0108  val AP50 red 0.971 green 0.609 blue 0.917 mAP 0.832
+epoch 195  2 s  loss box 1.944 obj 0.391 cls 0.034 range 0.0104
+epoch 196  2 s  loss box 1.830 obj 0.342 cls 0.035 range 0.0130
+epoch 197  1 s  loss box 1.916 obj 0.418 cls 0.073 range 0.0106
+epoch 198  2 s  loss box 1.927 obj 0.325 cls 0.040 range 0.0100
+epoch 199  2 s  loss box 1.856 obj 0.301 cls 0.027 range 0.0110  val AP50 red 0.937 green 0.595 blue 0.917 mAP 0.816
+epoch 200  1 s  loss box 1.891 obj 0.298 cls 0.039 range 0.0093
+epoch 201  1 s  loss box 1.944 obj 0.372 cls 0.180 range 0.0111
+epoch 202  1 s  loss box 1.882 obj 0.302 cls 0.036 range 0.0110
+epoch 203  1 s  loss box 1.873 obj 0.341 cls 0.041 range 0.0099
+epoch 204  2 s  loss box 1.836 obj 0.487 cls 0.066 range 0.0131  val AP50 red 0.983 green 0.588 blue 0.917 mAP 0.829
+epoch 205  1 s  loss box 1.777 obj 0.560 cls 0.069 range 0.0120
+epoch 206  1 s  loss box 1.913 obj 0.344 cls 0.036 range 0.0100
+epoch 207  2 s  loss box 1.904 obj 0.264 cls 0.075 range 0.0101
+epoch 208  2 s  loss box 1.939 obj 0.377 cls 0.041 range 0.0126
+epoch 209  2 s  loss box 1.847 obj 0.294 cls 0.032 range 0.0096  val AP50 red 0.976 green 0.610 blue 0.917 mAP 0.834
+epoch 210  2 s  loss box 1.874 obj 0.322 cls 0.037 range 0.0098
+epoch 211  2 s  loss box 1.824 obj 0.339 cls 0.084 range 0.0104
+epoch 212  2 s  loss box 1.830 obj 0.314 cls 0.061 range 0.0103
+epoch 213  2 s  loss box 1.831 obj 0.324 cls 0.068 range 0.0106
+epoch 214  2 s  loss box 1.891 obj 0.366 cls 0.053 range 0.0101  val AP50 red 0.957 green 0.614 blue 0.917 mAP 0.829
+epoch 215  2 s  loss box 1.852 obj 0.320 cls 0.051 range 0.0122
+epoch 216  2 s  loss box 1.853 obj 0.323 cls 0.051 range 0.0099
+epoch 217  2 s  loss box 1.857 obj 0.305 cls 0.034 range 0.0095
+epoch 218  2 s  loss box 1.888 obj 0.388 cls 0.077 range 0.0106
+epoch 219  2 s  loss box 1.856 obj 0.297 cls 0.043 range 0.0099  val AP50 red 0.960 green 0.605 blue 0.917 mAP 0.827
+epoch 220  2 s  loss box 1.824 obj 0.351 cls 0.048 range 0.0119
+epoch 221  2 s  loss box 1.880 obj 0.308 cls 0.048 range 0.0103
+epoch 222  2 s  loss box 1.851 obj 0.342 cls 0.047 range 0.0120
+epoch 223  2 s  loss box 1.905 obj 0.328 cls 0.054 range 0.0122
+epoch 224  2 s  loss box 1.894 obj 0.321 cls 0.045 range 0.0100  val AP50 red 0.998 green 0.585 blue 0.917 mAP 0.833
+epoch 225  2 s  loss box 1.852 obj 0.279 cls 0.041 range 0.0105
+epoch 226  2 s  loss box 1.851 obj 0.298 cls 0.051 range 0.0116
+epoch 227  2 s  loss box 1.911 obj 0.318 cls 0.034 range 0.0104
+epoch 228  2 s  loss box 1.858 obj 0.299 cls 0.039 range 0.0110
+epoch 229  2 s  loss box 1.865 obj 0.309 cls 0.050 range 0.0094  val AP50 red 0.964 green 0.597 blue 0.917 mAP 0.826
+epoch 230  2 s  loss box 1.878 obj 0.340 cls 0.053 range 0.0097
+epoch 231  2 s  loss box 1.887 obj 0.318 cls 0.040 range 0.0099
+epoch 232  2 s  loss box 1.863 obj 0.305 cls 0.058 range 0.0106
+epoch 233  2 s  loss box 1.867 obj 0.299 cls 0.036 range 0.0109
+epoch 234  2 s  loss box 1.880 obj 0.360 cls 0.065 range 0.0091  val AP50 red 0.974 green 0.616 blue 0.917 mAP 0.836
+epoch 235  2 s  loss box 1.883 obj 0.304 cls 0.028 range 0.0101
+epoch 236  1 s  loss box 1.856 obj 0.329 cls 0.046 range 0.0093
+epoch 237  2 s  loss box 1.873 obj 0.347 cls 0.045 range 0.0119
+epoch 238  1 s  loss box 1.822 obj 0.374 cls 0.072 range 0.0102
+epoch 239  1 s  loss box 1.880 obj 0.315 cls 0.054 range 0.0111  val AP50 red 0.980 green 0.613 blue 0.917 mAP 0.836
+epoch 240  1 s  loss box 1.876 obj 0.309 cls 0.077 range 0.0103
+epoch 241  1 s  loss box 1.901 obj 0.345 cls 0.047 range 0.0110
+epoch 242  1 s  loss box 1.900 obj 0.439 cls 0.050 range 0.0099
+epoch 243  2 s  loss box 1.886 obj 0.348 cls 0.037 range 0.0107
+epoch 244  2 s  loss box 1.847 obj 0.303 cls 0.045 range 0.0103  val AP50 red 0.999 green 0.607 blue 0.917 mAP 0.841
+epoch 245  2 s  loss box 1.777 obj 0.479 cls 0.066 range 0.0135
+epoch 246  2 s  loss box 1.810 obj 0.414 cls 0.048 range 0.0119
+epoch 247  2 s  loss box 1.887 obj 0.300 cls 0.035 range 0.0103
+epoch 248  2 s  loss box 1.918 obj 0.371 cls 0.046 range 0.0105
+epoch 249  2 s  loss box 1.872 obj 0.310 cls 0.041 range 0.0100  val AP50 red 0.984 green 0.603 blue 0.917 mAP 0.835
+float test AP50 {0: 0.9986601184517852, 1: 0.6066816370620983, 2: 0.9166666666666666, 'mAP': 0.8406694740601833} head saturation 0.0009

@@ -1,0 +1,2 @@
+6ffe16c97f2b2359673ab0ccd8d7cdb4a3dce7406c58ceb5d532c1488bb2166e  contest_work_v3_20261028_advy01.bit (first real-data model, superseded)
+875e1590bd6d08b331a7bff490b4fe8268d14f7cf102dd5d300ccdd6a62ffbbc  contest_work_v3_20261028_advy03.bit (FINAL, written to the configuration flash)

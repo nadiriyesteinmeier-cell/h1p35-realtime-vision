@@ -1,0 +1,147 @@
+{
+  "_comment": "Driving rules (walle_bridge.py --rules tools/robot/rules_drive.json --drive). Traffic light + steering: green = go, the robot turns towards the side of the screen where the green part is (left / right) or drives straight (centre); blue = back up; red = stop; target lost = stop. Every drive is a timed self.wali.move (speed 40 of 90, 0.5..0.7 s): the robot stops by itself if the PC or the link goes away. Gestures that move the body (action / mood) are left out here: they would hold up the driving.",
+  "appear": {
+    "R": [
+      {
+        "name": "move",
+        "arguments": {
+          "move": "stop"
+        }
+      },
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#FF0000"
+        }
+      }
+    ],
+    "G": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#00FF00"
+        }
+      }
+    ],
+    "B": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#0040FF"
+        }
+      }
+    ]
+  },
+  "left": [],
+  "centre": [],
+  "right": [],
+  "cross": {
+    "R": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ],
+    "G": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ],
+    "B": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ]
+  },
+  "lost": [
+    {
+      "name": "move",
+      "arguments": {
+        "move": "stop"
+      }
+    },
+    {
+      "name": "self.wali.eye",
+      "arguments": {
+        "action": "mood"
+      }
+    }
+  ],
+  "drive": {
+    "G": {
+      "left": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "left",
+            "speed": 40,
+            "duration": 500
+          }
+        }
+      ],
+      "centre": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "forward",
+            "speed": 40,
+            "duration": 700
+          }
+        }
+      ],
+      "right": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "right",
+            "speed": 40,
+            "duration": 500
+          }
+        }
+      ]
+    },
+    "B": {
+      "left": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "backward",
+            "speed": 40,
+            "duration": 600
+          }
+        }
+      ],
+      "centre": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "backward",
+            "speed": 40,
+            "duration": 600
+          }
+        }
+      ],
+      "right": [
+        {
+          "name": "self.wali.move",
+          "arguments": {
+            "direction": "backward",
+            "speed": 40,
+            "duration": 600
+          }
+        }
+      ]
+    }
+  }
+}

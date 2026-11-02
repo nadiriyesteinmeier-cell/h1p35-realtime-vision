@@ -1,0 +1,116 @@
+{
+  "_comment": "FPGA events -> WALL-E commands (robot_rules.py / walle_bridge.py). Entry: {\"name\": \"self.wali.<tool>\", \"arguments\": {...}} (tool list: logs_custom/robot/tools_ws.json). action: wave|arm_left|arm_right|dance|nod|shake_head|stop; mood: 21 moods (neutral, happy, surprised, ...) = eyes + body motion; servo angle is physical (arms raised ~60 / natural ~120 / down ~170, head level ~120, down 0). The head only tilts. Motions interrupt each other on the robot, so walle_bridge sends one at a time. No driving by default (robot on a desk); a timed drive would be {\"name\": \"self.wali.move\", \"arguments\": {\"direction\": \"left\", \"speed\": 30, \"duration\": 500}}. 2026-10-27: blue = blue eyes + 3 pulses and crossing = eye flash only: shake_head is refused (the head only tilts) and the moods cool/surprised drove the robot forward on the desk. 2026-10-29: blue also raises both arms (servo 60); the ESP32 firmware lowers them to 120 after 1.8 s (this PC rules file has no timer).",
+  "appear": {
+    "R": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#FF0000"
+        }
+      },
+      {
+        "name": "self.wali.action",
+        "arguments": {
+          "action": "wave"
+        }
+      }
+    ],
+    "G": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#00FF00"
+        }
+      },
+      {
+        "name": "self.wali.action",
+        "arguments": {
+          "action": "nod"
+        }
+      }
+    ],
+    "B": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "color",
+          "color": "#0040FF"
+        }
+      },
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "pulse",
+          "pulse_times": 3
+        }
+      },
+      {
+        "name": "self.wali.servo",
+        "arguments": {
+          "servo": "left_arm",
+          "angle": 60
+        }
+      },
+      {
+        "name": "self.wali.servo",
+        "arguments": {
+          "servo": "right_arm",
+          "angle": 60
+        }
+      }
+    ]
+  },
+  "left": [
+    {
+      "name": "self.wali.action",
+      "arguments": {
+        "action": "arm_left"
+      }
+    }
+  ],
+  "centre": [],
+  "right": [
+    {
+      "name": "self.wali.action",
+      "arguments": {
+        "action": "arm_right"
+      }
+    }
+  ],
+  "cross": {
+    "R": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ],
+    "G": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ],
+    "B": [
+      {
+        "name": "self.wali.eye",
+        "arguments": {
+          "action": "flash"
+        }
+      }
+    ]
+  },
+  "lost": [
+    {
+      "name": "self.wali.mood",
+      "arguments": {
+        "mood": "neutral"
+      }
+    }
+  ]
+}
