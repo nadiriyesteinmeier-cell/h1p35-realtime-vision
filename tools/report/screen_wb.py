@@ -19,6 +19,7 @@ from PIL import Image
 FF = 'E:/Ultimate Vocal Remover/ffmpeg.exe'
 GAIN = np.array([1.19, 1.0, 0.74], dtype=np.float32)        # about 90 % of the full correction measured on the screen floor (R138 G167 B237)
 MIN_PIX = 900                                                # bluish pixels at 1/4 resolution needed to accept a screen
+MIN_LOOSE = 5000                                             # dark-bluish pixels needed when no bright ones are found
 
 
 def block(m):
@@ -39,13 +40,19 @@ def find_box(small):
     r, g, b = small[..., 0].astype(np.int16), small[..., 1].astype(np.int16), small[..., 2].astype(np.int16)
     m = (r > 70) & (b > 130) & (b - r > 45) & (b - g > 15)
     if m.sum() < MIN_PIX:
-        return None
+        # a screen showing a dark scene (WB page at night) has no bright bluish pixels at all; only a large dark-bluish block counts
+        # (checked at 1 frame/s over the whole demo: the 5 frames this accepts all show the monitor)
+        loose = (b > 45) & (b - r > 22) & (b - g > 8)
+        if loose.sum() < MIN_LOOSE:
+            return None
+        bx = block(loose)
+        return None if bx is None else np.array(bx, dtype=np.float32)
     seed = block(m)
     if seed is None:
         return None
     # grow: dark screen content (WB page at night, R58 G61 B86) fails the strict mask, so the seed may only cover the bright part of the screen
     x0, y0, x1, y1 = seed
-    wx, wy = int(0.8 * (x1 - x0)) + 8, int(0.8 * (y1 - y0)) + 8
+    wx, wy = max(int(2.0 * (x1 - x0)) + 8, 120), max(int(2.0 * (y1 - y0)) + 8, 70)        # a small seed (bright patch) still reaches the whole screen
     X0, Y0 = max(0, x0 - wx), max(0, y0 - wy)
     X1, Y1 = min(small.shape[1], x1 + wx), min(small.shape[0], y1 + wy)
     loose = ((b > 45) & (b - r > 22) & (b - g > 8))[Y0:Y1, X0:X1]

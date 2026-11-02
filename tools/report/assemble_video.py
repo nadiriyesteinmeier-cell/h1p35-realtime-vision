@@ -6,11 +6,12 @@
     F:/yolo_env/Scripts/python.exe tools/report/assemble_video.py   ->  F:/fpga_submit/video/作品演示视频_最终版.mp4
 """
 import subprocess
+import sys
 
 FF = 'E:/Ultimate Vocal Remover/ffmpeg.exe'
 CARDS = 'F:/fpga_submit/video/cards'
 DEMO = 'F:/fpga_submit/video/demo_screenwb.mp4'
-OUT = 'F:/fpga_submit/video/作品演示视频_最终版.mp4'
+OUT = sys.argv[1] if len(sys.argv) > 1 else 'F:/fpga_submit/video/作品演示视频_最终版.mp4'
 INTRO = [('c0_title', 4.0), ('c1_block', 5.5), ('c2_photo', 5.5), ('c3_robot', 5.5), ('c4_demo', 2.0)]
 END = ('c5_end', 3.0)
 caps = [tuple(map(float, l.split())) for l in open(f'{CARDS}/captions.txt') if l.strip()]
