@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""make_video_cards.py - title / section cards and caption overlays for the demo video (layout after the official reference video:
+title -> block-by-block introduction -> "视频展示" -> live demo with captions -> END). No names of people or the school anywhere.
+
+    F:/yolo_env/Scripts/python.exe tools/report/make_video_cards.py   ->  F:/fpga_submit/video/cards/*.png
+"""
+import os
+
+from PIL import Image, ImageDraw, ImageFont
+
+ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+IMG = os.path.join(ROOT, 'docs', 'report', 'img')
+OUT = 'F:/fpga_submit/video/cards'
+W, H = 1920, 1080
+RED = (150, 20, 30)
+TITLE = '基于安路 PH1P35 的全流水线实时视觉处理与机器人联动系统'
+SUB = '2026 全国大学生嵌入式芯片与系统设计竞赛 · FPGA 创新设计赛道 · 安路选题二'
+
+
+def font(size, bold=True):
+    return ImageFont.truetype('C:/Windows/Fonts/msyhbd.ttc' if bold else 'C:/Windows/Fonts/msyh.ttc', size)
+
+
+def base():
+    im = Image.new('RGB', (W, H), 'white')
+    d = ImageDraw.Draw(im)
+    for y in range(H):                                       # light grey gradient towards the bottom, like the reference
+        g = int(255 - 40 * max(0, (y - 600) / 480))
+        d.line([(0, y), (W, y)], fill=(g, g, g))
+    return im, d
+
+
+def centered(d, y, s, f, fill=(20, 20, 20)):
+    d.text(((W - d.textlength(s, font=f)) / 2, y), s, font=f, fill=fill)
+
+
+def fit(img, box):
+    x0, y0, x1, y1 = box
+    im = img.copy()
+    im.thumbnail((x1 - x0, y1 - y0), Image.LANCZOS)
+    return im, (x0 + (x1 - x0 - im.width) // 2, y0 + (y1 - y0 - im.height) // 2)
+
+
+os.makedirs(OUT, exist_ok=True)
+
+# title
+im, d = base()
+d.rectangle([0, 470, 260, 486], fill=RED)
+d.rectangle([W - 260, 470, W, 486], fill=RED)
+centered(d, 380, TITLE, font(64))
+centered(d, 520, SUB, font(34, False), (80, 80, 80))
+im.save(f'{OUT}/c0_title.png')
+
+
+def intro(name, heading, picture, lines, picbox=(80, 170, 1180, 1020)):
+    im, d = base()
+    d.rectangle([60, 60, 76, 130], fill=RED)
+    d.text((100, 58), heading, font=font(54), fill=(20, 20, 20))
+    p, at = fit(Image.open(os.path.join(IMG, picture)).convert('RGB'), picbox)
+    im.paste(p, at)
+    d.rectangle([at[0] - 2, at[1] - 2, at[0] + p.width + 1, at[1] + p.height + 1], outline=(160, 160, 160), width=2)
+    y = 260
+    for s in lines:
+        d.text((1240, y), s, font=font(34, False), fill=(40, 40, 40))
+        y += 64
+    im.save(f'{OUT}/{name}.png')
+
+
+intro('c1_block', '分块介绍 · 系统组成', 'system_block.png',
+      ['MIPI 摄像头 1280×720@60', '自研 ISP：黑电平 / 阴影校正 / 白平衡', 'DDR2 帧缓存', '传统视觉 + 片上 int8 YOLO', '运动检测 · 延迟测量 · 直方图均衡',
+       'OSD 叠加 → FPGA 内 HDMI 输出', '识别结果 → ESP32 → 机器人'])
+intro('c2_photo', '分块介绍 · 实物', 'system_photo.png',
+      ['HX1P35A 开发板（PH1P35）', 'SC500CS MIPI 摄像头', 'HDMI 显示器', 'ESP32 桥接 + OLED 状态屏', 'WALL-E 机器人（执行机构）', '',
+       '全部功能在同一位流中', '已固化 Flash，上电即运行'], picbox=(80, 170, 1180, 1040))
+intro('c3_robot', '分块介绍 · 外部控制', 'robot_teardown.png',
+      ['FPGA 完成全部识别与检测', 'GPIO 串口单向发送识别结果', 'ESP32 解析结果、生成动作', 'Wi-Fi WebSocket 控制机器人', '',
+       '机器人为外购执行机构', '拆解：ESP32-S3 主控、减速电机、', '舵机、眼灯、锂电池'])
+im, d = base()
+d.rectangle([700, 380, 716, 560], fill=RED)
+d.rectangle([1240, 520, W, 536], fill=RED)
+centered(d, 430, '视频展示', font(80))
+im.save(f'{OUT}/c4_demo.png')
+im, d = base()
+centered(d, 400, 'END', ImageFont.truetype('C:/Windows/Fonts/timesbd.ttf', 120))
+centered(d, 580, TITLE, font(40, False), (60, 60, 60))
+im.save(f'{OUT}/c5_end.png')
+
+# captions: (start s, end s, main line, small second line) in the time of the demo clip
+CAPS = [
+    (0.0, 4.5, '上电即运行：位流已固化在 Flash，开发板不连接电脑', ''),
+    (4.5, 14.0, 'MIPI 摄像头 → HDMI 1280×720@60 实时显示', '左上角安路 Logo，左侧识别面板，右上角为采集→显示延迟（约 2 帧）'),
+    (14.0, 18.0, '数码管：左侧为越线计数，右侧 F060 为片上测得的摄像头帧率', ''),
+    (18.0, 28.0, '颜色识别：TINT 给目标着色，面板显示形状、坐标、面积与越线数', '自研颜色分割 + 光照自适应阈值，与参考例程算法不同'),
+    (28.0, 46.0, '拨码切换视图：灰度 / 二值化掩膜 / 边缘 / 素描 / 卡通 / 伪彩色', '按键长按切换分析组与风格组，切换在帧边界生效、不撕裂'),
+    (46.0, 64.0, '识别结果经 GPIO 串口单向发给 ESP32，ESP32 通过 Wi-Fi 控制机器人', '目标越过计数线时蜂鸣器提示、数码管计数 +1'),
+    (64.0, 82.0, '红色 → 眼灯变红并挥手；绿色 → 眼灯变绿并点头；目标偏左 / 右 → 举对应手臂', '全程不使用电脑；OLED 与三色灯实时显示收到的结果和发出的命令'),
+    (82.0, 96.0, '片上 int8 YOLO：检测框 + 类别与置信度，每秒约 30 次，取样到出框约 27 ms', '同样驱动机器人；模型用板上采集的实拍数据微调'),
+    (96.0, 124.0, 'WB 页（自研 ISP）：黑电平扣除、镜头阴影校正、闭环自动白平衡与曝光', 'KEY4 切换 AUTO / MAN / OFF，屏幕显示实际增益与中央窗口平均值'),
+    (124.0, 131.0, 'MOTION 页：32×18 网格硬件帧差，运动区域染红并框出', ''),
+    (131.0, 140.0, 'HIST EQ 页：硬件直方图均衡，左下角实时显示直方图与映射曲线', ''),
+    (140.0, 999.0, 'KEY3+KEY4 在 7 个页面间切换，全部功能集成在同一位流中', ''),
+]
+NOTE = '注：夜间弱光拍摄、显示器色温偏冷，手机拍屏偏蓝，屏幕区域已做后期白平衡校正；板上回传实测白纸 R/G/B = 112/113/113'
+
+for i, (a, b, s1, s2) in enumerate(CAPS):
+    im = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    h = 120 if s2 else 78
+    d.rectangle([0, H - h - 20, W, H - 20], fill=(0, 0, 0, 150))
+    d.text(((W - d.textlength(s1, font=font(40))) / 2, H - h - 8), s1, font=font(40), fill=(255, 255, 255, 255))
+    if s2:
+        d.text(((W - d.textlength(s2, font=font(28, False))) / 2, H - h + 48), s2, font=font(28, False), fill=(230, 230, 230, 255))
+    if i in (1, 2, 3):
+        d.rectangle([0, 0, W, 46], fill=(0, 0, 0, 120))
+        d.text(((W - d.textlength(NOTE, font=font(24, False))) / 2, 8), NOTE, font=font(24, False), fill=(255, 255, 255, 255))
+    im.save(f'{OUT}/cap_{i:02d}.png')
+open(f'{OUT}/captions.txt', 'w', encoding='utf-8').write('\n'.join('%g %g' % (a, b) for a, b, _, _ in CAPS) + '\n')
+print('cards and %d captions -> %s' % (len(CAPS), OUT))
