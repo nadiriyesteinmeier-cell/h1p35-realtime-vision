@@ -3,6 +3,7 @@
 
     F:/yolo_env/Scripts/python.exe tools/report/draw_block.py ; draw_diagrams.py ; draw_official.py      (figures)
     python tools/report/make_report_official.py [out.docx]          (default docs/report/作品报告_官方模板.docx; needs python-docx: system Python)
+    then export the PDF with Word (ExportAsFixedFormat) and run  python tools/report/pdf_fullres.py  (Word downsamples pictures to 200 dpi)
 
 The template's headings, numbering and styles are kept; every hint paragraph ("800字内", "400字内（可加重要图）；" ...) is replaced by content.
 No school, team or teacher names anywhere (template rule). Numbers come from docs/STATUS_FOR_CODEX.md, docs/YOLO_REAL_2026-10-28.md,
@@ -654,6 +655,19 @@ for i, r in enumerate(refs, 1):
     at.p('[%d] %s' % (i, r), 10.5, indent=False)
 remove(hint)
 
+# Word downsamples pictures to 200 dpi when it exports the PDF unless the document says not to compress them (w:doNotAutoCompressPictures;
+# CT_Settings order: right after the last of w:compat / w:docVars / w:rsids / m:mathPr / w:attachedSchema / w:themeFontLang / w:clrSchemeMapping /
+# w:doNotIncludeSubdocsInStats, before w:forceUpgrade / w:captions / w:shapeDefaults / w:decimalSymbol / w:listSeparator)
+st = D.settings.element
+if st.find(qn('w:doNotAutoCompressPictures')) is None:
+    before = {qn('w:' + t) for t in ('compat', 'docVars', 'rsids', 'attachedSchema', 'themeFontLang', 'clrSchemeMapping', 'doNotIncludeSubdocsInStats')}
+    before.add('{http://schemas.openxmlformats.org/officeDocument/2006/math}mathPr')
+    anchor = [c for c in st if c.tag in before]
+    nc = OxmlElement('w:doNotAutoCompressPictures')
+    if anchor:
+        anchor[-1].addnext(nc)
+    else:
+        st.append(nc)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 D.save(OUT)
 print('wrote', OUT)

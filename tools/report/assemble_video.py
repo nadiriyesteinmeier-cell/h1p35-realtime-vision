@@ -39,10 +39,13 @@ for i, (a, b) in enumerate(caps):
 fc.append(f'{last}format=yuv420p,fps=30[demo]')
 order = ''.join(f'[v{k}]' for k in range(len(INTRO))) + '[demo]' + f'[v{len(INTRO)}]'
 fc.append(f'{order}concat=n={len(INTRO) + 2}:v=1:a=0[outv]')
+# two-pass x264 at a fixed average rate: as sharp as the 300 MB upload limit allows (13 Mbit/s x 169 s = about 275 MB)
+KBPS = 13000
+venc = ['-c:v', 'libx264', '-preset', 'slow', '-b:v', f'{KBPS}k', '-maxrate', '24M', '-bufsize', '30M', '-profile:v', 'high', '-pix_fmt', 'yuv420p',
+        '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv', '-passlogfile', f'{CARDS}/x264pass']
+graph = ['-filter_complex', ';'.join(fc), '-map', '[outv]']
+subprocess.run(args + graph + venc + ['-pass', '1', '-an', '-f', 'null', 'NUL'], check=True)
 args += ['-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000']
-args += ['-filter_complex', ';'.join(fc), '-map', '[outv]', '-map', f'{demo_in + 1 + len(caps)}:a', '-shortest',
-         '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-profile:v', 'high', '-pix_fmt', 'yuv420p',
-         '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv',
-         '-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart', OUT]
-subprocess.run(args, check=True)
+subprocess.run(args + graph + ['-map', f'{demo_in + 1 + len(caps)}:a', '-shortest'] + venc +
+               ['-pass', '2', '-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart', OUT], check=True)
 print('wrote', OUT)

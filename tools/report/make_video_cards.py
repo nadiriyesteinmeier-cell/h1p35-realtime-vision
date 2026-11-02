@@ -70,9 +70,9 @@ def intro(name, heading, picture, lines, picbox=(80, 170, 1180, 1020)):
 intro('c1_block', '分块介绍 · 系统组成', 'system_block.png',
       ['MIPI 摄像头 1280×720@60', '自研 ISP：黑电平 / 阴影校正 / 白平衡', 'DDR2 帧缓存', '传统视觉 + 片上 int8 YOLO', '运动检测 · 延迟测量 · 直方图均衡',
        'OSD 叠加 → FPGA 内 HDMI 输出', '识别结果 → ESP32 → 机器人'])
-intro('c2_photo', '分块介绍 · 实物', 'system_photo.png',
-      ['HX1P35A 开发板（PH1P35）', 'SC500CS MIPI 摄像头', 'HDMI 显示器', 'ESP32 桥接 + OLED 状态屏', 'WALL-E 机器人（执行机构）', '',
-       '全部功能在同一位流中', '已固化 Flash，上电即运行'], picbox=(80, 170, 1180, 1040))
+intro('c2_photo', '分块介绍 · 实物', 'system_overview.jpg',
+      ['HX1P35A 开发板（PH1P35）', 'SC500CS MIPI 摄像头', 'HDMI 显示器', '数码管 / 蜂鸣器', 'ESP32 桥接板', 'OLED 状态屏 + 三色灯', 'WALL-E 机器人（执行机构）', '',
+       '全部功能在同一位流中', '已固化 Flash，上电即运行'], picbox=(60, 170, 1200, 1040))
 intro('c3_robot', '分块介绍 · 外部控制', 'robot_teardown.png',
       ['FPGA 完成全部识别与检测', 'GPIO 串口单向发送识别结果', 'ESP32 解析结果、生成动作', 'Wi-Fi WebSocket 控制机器人', '',
        '机器人为外购执行机构', '拆解：ESP32-S3 主控、减速电机、', '舵机、眼灯、锂电池'])

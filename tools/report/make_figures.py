@@ -75,7 +75,7 @@ for j in range(3):
         ax.set_title('%s\n%s  四角均值 %.2f' % (title, names[j], corner), fontsize=9.5)
 fig.colorbar(im, ax=axes, shrink=0.8, label='相对中心的比值')
 fig.suptitle('白纸平场 16×9 格（同一色标）：镜头颜色阴影与亮度衰减的校正效果', fontsize=12)
-fig.savefig(os.path.join(OUT, 'flatfield_before_after.png'), dpi=150, bbox_inches='tight')
+fig.savefig(os.path.join(OUT, 'flatfield_before_after.png'), dpi=300, bbox_inches='tight')
 plt.close(fig)
 print('flatfield: raw %d / dark %d / corrected %d reports' % (n_raw, n_dark, n_cor))
 for j in range(3):
@@ -96,7 +96,7 @@ for ax, c, nm in zip(axes, chans, ('R', 'G', 'B')):
     ax.set_xticks([]); ax.set_yticks([])
 fig.colorbar(im, ax=axes, shrink=0.85, label='校正增益（中心 = 1.0）')
 fig.suptitle('镜头阴影校正表：21×13 个节点（64 像素间距，Q2.10）', fontsize=12)
-fig.savefig(os.path.join(OUT, 'lsc_gain_map.png'), dpi=150, bbox_inches='tight')
+fig.savefig(os.path.join(OUT, 'lsc_gain_map.png'), dpi=300, bbox_inches='tight')
 plt.close(fig)
 
 # ------------------------------------------------------------------ YOLO training
@@ -123,7 +123,7 @@ h = sum((a.get_legend_handles_labels()[0] for a in (ax1, ax1b, ax2)), [])
 lbl = sum((a.get_legend_handles_labels()[1] for a in (ax1, ax1b, ax2)), [])
 ax1.legend(h, lbl, loc='center right', fontsize=8.5)
 ax1.set_title('片上 YOLO（3.1 万参数）合成数据训练过程：150 轮，RTX 4060 约 30 分钟', fontsize=11)
-fig.savefig(os.path.join(OUT, 'yolo_training.png'), dpi=150, bbox_inches='tight')
+fig.savefig(os.path.join(OUT, 'yolo_training.png'), dpi=300, bbox_inches='tight')
 plt.close(fig)
 print('yolo: %d epochs, %d validation points, last mAP %.3f' % (len(ep), len(vep), vmap[-1] if vmap else -1))
 
@@ -148,7 +148,7 @@ ax.barh(y + 0.2, [r[2] for r in rows], height=0.4, label='寄存器')
 ax.set_yticks(y); ax.set_yticklabels([label[r[0]] for r in rows], fontsize=9)
 ax.invert_yaxis(); ax.set_xlabel('数量'); ax.legend(fontsize=9)
 ax.set_title('最终版（adv03）主要模块资源占用（Slice 99.63%，ERAM 107/108，DSP 37/40）', fontsize=11)
-fig.savefig(os.path.join(OUT, 'resource_breakdown.png'), dpi=150, bbox_inches='tight')
+fig.savefig(os.path.join(OUT, 'resource_breakdown.png'), dpi=300, bbox_inches='tight')
 plt.close(fig)
 for r in rows:
     print('  %-28s lut+rip %6d  seq %6d' % (r[0], r[1], r[2]))
