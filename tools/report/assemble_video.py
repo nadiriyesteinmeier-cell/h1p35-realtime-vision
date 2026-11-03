@@ -12,8 +12,8 @@ FF = 'E:/Ultimate Vocal Remover/ffmpeg.exe'
 CARDS = 'F:/fpga_submit/video/cards'
 DEMO = 'F:/fpga_submit/video/demo_screenwb.mp4'
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'F:/fpga_submit/video/作品演示视频_最终版.mp4'
-INTRO = [('c0_title', 4.0), ('c1_block', 5.5), ('c2_photo', 5.5), ('c3_robot', 5.5), ('c4_demo', 2.0)]
-END = ('c5_end', 3.0)
+INTRO = [('c0_title', 3.5), ('c1_block', 5.5), ('c2_photo', 5.5), ('c3_robot', 5.5), ('c3b_color', 10.0), ('c4_demo', 2.0)]   # c3b: draw_color_compare.py
+END = ('c5_end', 2.5)
 caps = [tuple(map(float, l.split())) for l in open(f'{CARDS}/captions.txt') if l.strip()]
 LAYOUT = open(f'{CARDS}/layout.txt').read().strip()                  # written by make_video_cards.py: overlay | side
 
@@ -39,8 +39,8 @@ for i, (a, b) in enumerate(caps):
 fc.append(f'{last}format=yuv420p,fps=30[demo]')
 order = ''.join(f'[v{k}]' for k in range(len(INTRO))) + '[demo]' + f'[v{len(INTRO)}]'
 fc.append(f'{order}concat=n={len(INTRO) + 2}:v=1:a=0[outv]')
-# two-pass x264 at a fixed average rate: as sharp as the 300 MB upload limit allows (13 Mbit/s x 169 s = about 275 MB)
-KBPS = 13000
+# two-pass x264 at a fixed average rate: as sharp as the 300 MB upload limit allows (12.5 Mbit/s x 178 s = about 280 MB)
+KBPS = 12500
 venc = ['-c:v', 'libx264', '-preset', 'slow', '-b:v', f'{KBPS}k', '-maxrate', '24M', '-bufsize', '30M', '-profile:v', 'high', '-pix_fmt', 'yuv420p',
         '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv', '-passlogfile', f'{CARDS}/x264pass']
 graph = ['-filter_complex', ';'.join(fc), '-map', '[outv]']
